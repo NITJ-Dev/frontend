@@ -8,7 +8,7 @@ import { ArrowLeftIcon } from "@heroicons/react/solid";
 import Header from "../../components/Header/Header";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Captcha } from "../../components/CAPTACH/Captcha";
-import {Alert } from "@mui/material";
+import { Alert } from "@mui/material";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -75,7 +75,7 @@ const SignUp = () => {
     };
 
     try {
-      let res = axiosInstance.post(`/sign_up.php`, data);
+      let res = axiosInstance.post(`/student/sign_up.php`, data);
 
       await toast.promise(res, {
         loading: "Creating...",
@@ -129,10 +129,14 @@ const SignUp = () => {
           </button>
           <div className="p-6 md:p-8 space-y-6">
             <div className="flex items-center justify-center mb-6">
-              <img className="w-24 h-24 md:w-32 md:h-32" src={logo} alt="Logo" />
+              <img
+                className="w-24 h-24 md:w-32 md:h-32"
+                src={logo}
+                alt="Logo"
+              />
             </div>
             <h1 className="text-xl md:text-2xl font-bold leading-tight tracking-tight text-blue-900 text-center">
-              Create  Account
+              Create Account
             </h1>
             <form className="space-y-4" onSubmit={handleSubmit} method="POST">
               <div>
@@ -148,10 +152,10 @@ const SignUp = () => {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className={`bg-white border ${errors.email ? "border-red-500" : "border-blue-300"
-                    } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
+                  className={`bg-white border ${
+                    errors.email ? "border-red-500" : "border-blue-300"
+                  } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
                   placeholder=""
-
                 />
                 {errors.email && (
                   <p className="mt-2 text-sm text-red-600">{errors.email}</p>
@@ -170,10 +174,10 @@ const SignUp = () => {
                   id="rollno"
                   value={rollno}
                   onChange={(e) => setRollNo(e.target.value)}
-                  className={`bg-white border ${errors.rollno ? "border-red-500" : "border-blue-300"
-                    } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
+                  className={`bg-white border ${
+                    errors.rollno ? "border-red-500" : "border-blue-300"
+                  } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
                   placeholder="12345678"
-
                 />
                 {errors.rollno && (
                   <p className="mt-2 text-sm text-red-600">{errors.rollno}</p>
@@ -192,10 +196,10 @@ const SignUp = () => {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className={`bg-white border ${errors.password ? "border-red-500" : "border-blue-300"
-                    } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
+                  className={`bg-white border ${
+                    errors.password ? "border-red-500" : "border-blue-300"
+                  } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
                   placeholder="••••••••"
-
                 />
                 {errors.password && (
                   <p className="mt-2 text-sm text-red-600">{errors.password}</p>
@@ -214,10 +218,12 @@ const SignUp = () => {
                   id="confirm-password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className={`bg-white border ${errors.confirmPassword ? "border-red-500" : "border-blue-300"
-                    } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
+                  className={`bg-white border ${
+                    errors.confirmPassword
+                      ? "border-red-500"
+                      : "border-blue-300"
+                  } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
                   placeholder="••••••••"
-
                 />
                 {errors.confirmPassword && (
                   <p className="mt-2 text-sm text-red-600">
@@ -230,20 +236,24 @@ const SignUp = () => {
                   Captcha Validated Successful
                 </Alert>
               )}
-               {showCaptcha && <Captcha setVerification={sendToCaptchaForValidation} setShowCaptcha={setShowCaptcha} />}
+              {showCaptcha && (
+                <Captcha
+                  setVerification={sendToCaptchaForValidation}
+                  setShowCaptcha={setShowCaptcha}
+                />
+              )}
 
               <button
                 type="submit"
-                className={`w-full text-white ${verified ? "bg-blue-700" : "bg-blue-400"
-                  } 
+                className={`w-full text-white ${
+                  verified ? "bg-blue-700" : "bg-blue-400"
+                } 
                   
                   focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
                 disabled={!verified}
               >
                 Create Account
               </button>
-
-              
 
               <p className="text-sm font-light text-blue-500 text-center">
                 Already have an account?{" "}

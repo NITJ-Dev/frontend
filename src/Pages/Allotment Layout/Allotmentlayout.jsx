@@ -36,12 +36,7 @@ import axiosInstance from "../../Helper/axiosInstance";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-
 function JustifiedExample() {
-
-
-
-
   const [selectedHostel, setSelectedHostel] = useState("");
   const [selectedRoom, setSelectedRoom] = useState({
     hname: "",
@@ -78,7 +73,7 @@ function JustifiedExample() {
 
   const getRoomData = async () => {
     try {
-      let res = axiosInstance.post(`/get_room_details.php`, {
+      let res = axiosInstance.post(`/admin/room_data.php`, {
         code: session.code,
       });
       await toast.promise(res, {
@@ -224,8 +219,7 @@ function JustifiedExample() {
         justify
         onSelect={handleHostelChange}
       >
-        {
-          show(['', '', ''], 'male', " ") &&
+        {show(["", "", ""], "male", " ") && (
           <Tab eventKey="MBH-A" title="MBH-A" className="  ">
             <AvailabilityTab
               newSelectedRoom={selectedRoom.roomNo}
@@ -333,11 +327,9 @@ function JustifiedExample() {
               handleClick={handleClick}
             />
           </Tab>
-        }
+        )}
 
-        {
-          show([''], 'male', "BH-1") &&
-
+        {show([""], "male", "BH-1") && (
           <Tab eventKey="BH-1" title="BH-1" className="  ">
             <AvailabilityTab
               newSelectedRoom={selectedRoom.roomNo}
@@ -354,11 +346,9 @@ function JustifiedExample() {
                 in_2: "Washroom ",
                 in_3: "Back Exit",
 
-
                 os_1: "A Block Entry",
                 os_2: "Water Cooler ",
                 os_3: "B Block Entry",
-
               }}
               changeSelectedRoom={(room) => {
                 ////console.log("gvvvv");
@@ -377,7 +367,6 @@ function JustifiedExample() {
               roomsDetails={bh1.ff}
               newSelectedRoom={selectedRoom.roomID}
               extraThings={{
-
                 in_1: "Stairs",
                 in_2: "Musicroom ",
                 in_3: "Stairs",
@@ -388,11 +377,6 @@ function JustifiedExample() {
                 os_3: "Elec Store",
                 os_4: "Wash Room",
                 os_5: "Elec Store",
-
-
-
-
-
               }}
               changeSelectedRoom={(room) => {
                 ////console.log("gvvvv");
@@ -411,7 +395,6 @@ function JustifiedExample() {
               roomsDetails={bh1.sf}
               newSelectedRoom={selectedRoom.roomID}
               extraThings={{
-
                 in_1: "Stairs",
                 in_2: "Wasroom ",
                 in_3: "Stairs",
@@ -422,9 +405,6 @@ function JustifiedExample() {
                 os_3: "Elec Store",
                 os_4: "Wash Room",
                 os_5: "Elec Store ",
-
-
-
               }}
               changeSelectedRoom={(room) => {
                 ////console.log("gvvvv");
@@ -441,11 +421,9 @@ function JustifiedExample() {
               handleClick={handleClick}
             />
           </Tab>
-        }
+        )}
 
-        {
-          show([''], 'male', "BH-2") &&
-
+        {show([""], "male", "BH-2") && (
           <Tab eventKey="BH-2" title="BH-2" className="  ">
             <AvailabilityTab
               newSelectedRoom={selectedRoom.roomNo}
@@ -500,18 +478,14 @@ function JustifiedExample() {
               }}
             />
 
-
             <ProceedButton
               newSelectedRoom={selectedRoom.roomID}
               handleClick={handleClick}
             />
           </Tab>
-        }
+        )}
 
-        {
-
-          show([''], 'male', "BH-5") &&
-
+        {show([""], "male", "BH-5") && (
           <Tab eventKey="BH-5" title="BH-5" className="  ">
             <AvailabilityTab
               newSelectedRoom={selectedRoom.roomNo}
@@ -570,10 +544,9 @@ function JustifiedExample() {
               handleClick={handleClick}
             />
           </Tab>
-        }
+        )}
 
-        {
-          show(['', '', '',], 'male', "MBH-B") &&
+        {show(["", "", ""], "male", "MBH-B") && (
           <Tab eventKey="MBH-B" title="MBH-B" className="  ">
             <AvailabilityTab
               newSelectedRoom={selectedRoom.roomNo}
@@ -696,10 +669,9 @@ function JustifiedExample() {
               handleClick={handleClick}
             />
           </Tab>
-        }
+        )}
 
-        {
-          show(['', '', '',], 'male', "MBH-F") &&
+        {show(["", "", ""], "male", "MBH-F") && (
           <Tab eventKey="MBH-F" title="MBH-F" className="  ">
             <AvailabilityTab
               newSelectedRoom={selectedRoom.roomNo}
@@ -807,75 +779,72 @@ function JustifiedExample() {
               handleClick={handleClick}
             />
           </Tab>
-        }
+        )}
 
-        {
-          show(['mtech1','mba1','msc1'], "male") &&
-          (
-            <Tab eventKey="BH-3" title="BH-3" className="xyz  ">
-              <AvailabilityTab
-                newSelectedRoom={selectedRoom.roomNo}
-                hname={selectedHostel}
-              />
+        {show(["mtech1", "mba1", "msc1"], "male") && (
+          <Tab eventKey="BH-3" title="BH-3" className="xyz  ">
+            <AvailabilityTab
+              newSelectedRoom={selectedRoom.roomNo}
+              hname={selectedHostel}
+            />
 
-              <HostelView4
-                floor="Ground Floor"
-                hname="BH-3"
-                roomsDetails={bh3State.gf}
-                newSelectedRoom={selectedRoom.roomID}
-                changeSelectedRoom={(room) => {
-                  ////console.log("gvvvv");
-                  //console.log("room details: ", room);
-                  setSelectedRoom({
-                    hname: "MBH-F",
-                    roomID: room.id,
-                    roomNo: room.no,
-                  });
-                }}
-              />
+            <HostelView4
+              floor="Ground Floor"
+              hname="BH-3"
+              roomsDetails={bh3State.gf}
+              newSelectedRoom={selectedRoom.roomID}
+              changeSelectedRoom={(room) => {
+                ////console.log("gvvvv");
+                //console.log("room details: ", room);
+                setSelectedRoom({
+                  hname: "MBH-F",
+                  roomID: room.id,
+                  roomNo: room.no,
+                });
+              }}
+            />
 
-              <HostelView4
-                floor="First Floor"
-                hname="BH-3"
-                roomsDetails={bh3State.ff}
-                newSelectedRoom={selectedRoom.roomID}
-                changeSelectedRoom={(room) => {
-                  ////console.log("gvvvv");
-                  //console.log("room details: ", room);
-                  setSelectedRoom({
-                    hname: "MBH-F",
-                    roomID: room.id,
-                    roomNo: room.no,
-                  });
-                }}
-              />
+            <HostelView4
+              floor="First Floor"
+              hname="BH-3"
+              roomsDetails={bh3State.ff}
+              newSelectedRoom={selectedRoom.roomID}
+              changeSelectedRoom={(room) => {
+                ////console.log("gvvvv");
+                //console.log("room details: ", room);
+                setSelectedRoom({
+                  hname: "MBH-F",
+                  roomID: room.id,
+                  roomNo: room.no,
+                });
+              }}
+            />
 
-              <HostelView4
-                floor="Second Floor"
-                hname="BH-3"
-                roomsDetails={bh3State.sf}
-                newSelectedRoom={selectedRoom.roomID}
-                changeSelectedRoom={(room) => {
-                  ////console.log("gvvvv");
-                  //console.log("room details: ", room);
-                  setSelectedRoom({
-                    hname: "MBH-F",
-                    roomID: room.id,
-                    roomNo: room.no,
-                  });
-                }}
-              />
+            <HostelView4
+              floor="Second Floor"
+              hname="BH-3"
+              roomsDetails={bh3State.sf}
+              newSelectedRoom={selectedRoom.roomID}
+              changeSelectedRoom={(room) => {
+                ////console.log("gvvvv");
+                //console.log("room details: ", room);
+                setSelectedRoom({
+                  hname: "MBH-F",
+                  roomID: room.id,
+                  roomNo: room.no,
+                });
+              }}
+            />
 
-              <ProceedButton
-                newSelectedRoom={selectedRoom.roomID}
-                handleClick={handleClick}
-              />
-            </Tab>
-          )}
+            <ProceedButton
+              newSelectedRoom={selectedRoom.roomID}
+              handleClick={handleClick}
+            />
+          </Tab>
+        )}
 
-        {
-          show(['mtech1', 'mba1', 'msc1'], 'male', "BH-4") &&
-          (<Tab eventKey="BH-4" title="BH-4" className="  ">
+        {show(["mtech1", "mba1", "msc1"], "male", "BH-4") && (
+          <Tab eventKey="BH-4" title="BH-4" className="  ">
             <AvailabilityTab
               newSelectedRoom={selectedRoom.roomNo}
               hname={selectedHostel}
@@ -933,11 +902,10 @@ function JustifiedExample() {
               newSelectedRoom={selectedRoom.roomID}
               handleClick={handleClick}
             />
-          </Tab>)
-        }
+          </Tab>
+        )}
 
-        {
-          show(['mtech1', 'mba1', 'msc1'], 'male', "BH-6") &&
+        {show(["mtech1", "mba1", "msc1"], "male", "BH-6") && (
           <Tab eventKey="BH-6" title="BH-6" className="  ">
             <AvailabilityTab
               newSelectedRoom={selectedRoom.roomNo}
@@ -997,10 +965,9 @@ function JustifiedExample() {
               handleClick={handleClick}
             />
           </Tab>
-        }
+        )}
 
-        {
-          show(['mtech1', 'mba1', 'msc1'], 'male', "BH-7") &&
+        {show(["mtech1", "mba1", "msc1"], "male", "BH-7") && (
           <Tab eventKey="BH-7" title="BH-7" className="  ">
             <AvailabilityTab
               newSelectedRoom={selectedRoom.roomNo}
@@ -1076,10 +1043,9 @@ function JustifiedExample() {
               handleClick={handleClick}
             />
           </Tab>
-        }
+        )}
 
-        {
-          show(['', ''], 'male', "BH-7E") &&
+        {show(["", ""], "male", "BH-7E") && (
           <Tab eventKey="BH-7E" title="BH-7E" className=" ">
             <AvailabilityTab
               newSelectedRoom={selectedRoom.roomNo}
@@ -1146,282 +1112,275 @@ function JustifiedExample() {
               handleClick={handleClick}
             />
           </Tab>
-        }
+        )}
 
-        {
-          show(["", ""], "female") &&
-          (
-            <Tab eventKey="GH-1" title="GH-1" className=" ">
-              <AvailabilityTab
-                newSelectedRoom={selectedRoom.roomNo}
-                hname={selectedHostel}
-              />
-              <HostelView1
-                floor="Ground Floor"
-                roomsDetails={gh1State.gf}
-                newSelectedRoom={selectedRoom.roomID}
-                changeSelectedRoom={(room) => {
-                  ////console.log("gvvvv");
-                  //console.log("room details: ", room);
-                  setSelectedRoom({
-                    hname: "BH-7E",
-                    roomID: room.id,
-                    roomNo: room.no,
-                  });
-                }}
-              />
-              <HostelView1
-                floor="First Floor"
-                roomsDetails={gh1State.ff}
-                newSelectedRoom={selectedRoom.roomID}
-                changeSelectedRoom={(room) => {
-                  ////console.log("gvvvv");
-                  //console.log("room details: ", room);
-                  setSelectedRoom({
-                    hname: "BH-7E",
-                    roomID: room.id,
-                    roomNo: room.no,
-                  });
-                }}
-              />
-              <ProceedButton
-                newSelectedRoom={selectedRoom.roomID}
-                handleClick={handleClick}
-              />
-            </Tab>
-          )}
+        {show(["", ""], "female") && (
+          <Tab eventKey="GH-1" title="GH-1" className=" ">
+            <AvailabilityTab
+              newSelectedRoom={selectedRoom.roomNo}
+              hname={selectedHostel}
+            />
+            <HostelView1
+              floor="Ground Floor"
+              roomsDetails={gh1State.gf}
+              newSelectedRoom={selectedRoom.roomID}
+              changeSelectedRoom={(room) => {
+                ////console.log("gvvvv");
+                //console.log("room details: ", room);
+                setSelectedRoom({
+                  hname: "BH-7E",
+                  roomID: room.id,
+                  roomNo: room.no,
+                });
+              }}
+            />
+            <HostelView1
+              floor="First Floor"
+              roomsDetails={gh1State.ff}
+              newSelectedRoom={selectedRoom.roomID}
+              changeSelectedRoom={(room) => {
+                ////console.log("gvvvv");
+                //console.log("room details: ", room);
+                setSelectedRoom({
+                  hname: "BH-7E",
+                  roomID: room.id,
+                  roomNo: room.no,
+                });
+              }}
+            />
+            <ProceedButton
+              newSelectedRoom={selectedRoom.roomID}
+              handleClick={handleClick}
+            />
+          </Tab>
+        )}
 
-        {
-          show(["", ""], "female") &&
-          (
-            <Tab eventKey="GH-2" title="GH-2" className=" ">
-              <AvailabilityTab
-                newSelectedRoom={selectedRoom.roomNo}
-                hname={selectedHostel}
-              />
-              <HostelView1
-                floor="Ground Floor"
-                roomsDetails={gh2State.gf}
-                newSelectedRoom={selectedRoom.roomID}
-                changeSelectedRoom={(room) => {
-                  ////console.log("gvvvv");
-                  //console.log("room details: ", room);
-                  setSelectedRoom({
-                    hname: "BH-7E",
-                    roomID: room.id,
-                    roomNo: room.no,
-                  });
-                }}
-              />
-              <HostelView1
-                floor="First Floor"
-                roomsDetails={gh2State.ff}
-                newSelectedRoom={selectedRoom.roomID}
-                changeSelectedRoom={(room) => {
-                  ////console.log("gvvvv");
-                  //console.log("room details: ", room);
-                  setSelectedRoom({
-                    hname: "BH-7E",
-                    roomID: room.id,
-                    roomNo: room.no,
-                  });
-                }}
-              />
+        {show(["", ""], "female") && (
+          <Tab eventKey="GH-2" title="GH-2" className=" ">
+            <AvailabilityTab
+              newSelectedRoom={selectedRoom.roomNo}
+              hname={selectedHostel}
+            />
+            <HostelView1
+              floor="Ground Floor"
+              roomsDetails={gh2State.gf}
+              newSelectedRoom={selectedRoom.roomID}
+              changeSelectedRoom={(room) => {
+                ////console.log("gvvvv");
+                //console.log("room details: ", room);
+                setSelectedRoom({
+                  hname: "BH-7E",
+                  roomID: room.id,
+                  roomNo: room.no,
+                });
+              }}
+            />
+            <HostelView1
+              floor="First Floor"
+              roomsDetails={gh2State.ff}
+              newSelectedRoom={selectedRoom.roomID}
+              changeSelectedRoom={(room) => {
+                ////console.log("gvvvv");
+                //console.log("room details: ", room);
+                setSelectedRoom({
+                  hname: "BH-7E",
+                  roomID: room.id,
+                  roomNo: room.no,
+                });
+              }}
+            />
 
-              <HostelView1
-                floor="Second Floor"
-                roomsDetails={gh2State.sf}
-                newSelectedRoom={selectedRoom.roomID}
-                changeSelectedRoom={(room) => {
-                  ////console.log("gvvvv");
-                  //console.log("room details: ", room);
-                  setSelectedRoom({
-                    hname: "BH-7E",
-                    roomID: room.id,
-                    roomNo: room.no,
-                  });
-                }}
-              />
-              <ProceedButton
-                newSelectedRoom={selectedRoom.roomID}
-                handleClick={handleClick}
-              />
-            </Tab>
-          )}
-        {
-          show([''], "female") &&
-          (
-            <Tab eventKey="MGH-PHASE-1" title="MGH-PHASE-1" className=" ">
-              <AvailabilityTab
-                newSelectedRoom={selectedRoom.roomNo}
-                hname={selectedHostel}
-              />
+            <HostelView1
+              floor="Second Floor"
+              roomsDetails={gh2State.sf}
+              newSelectedRoom={selectedRoom.roomID}
+              changeSelectedRoom={(room) => {
+                ////console.log("gvvvv");
+                //console.log("room details: ", room);
+                setSelectedRoom({
+                  hname: "BH-7E",
+                  roomID: room.id,
+                  roomNo: room.no,
+                });
+              }}
+            />
+            <ProceedButton
+              newSelectedRoom={selectedRoom.roomID}
+              handleClick={handleClick}
+            />
+          </Tab>
+        )}
+        {show([""], "female") && (
+          <Tab eventKey="MGH-PHASE-1" title="MGH-PHASE-1" className=" ">
+            <AvailabilityTab
+              newSelectedRoom={selectedRoom.roomNo}
+              hname={selectedHostel}
+            />
 
-              <MGHview1
-                floor="Ground Floor"
-                roomsDetails={mgh2020State.gf}
-                extraThings={{
-                  is_left: "Stairs",
-                  is_mid: "Frontside ",
-                  is_right: "Stairs",
-                  os_left: "Wash Room",
-                  os_mid: "Stairs / Lifts ",
-                  os_right: "Wash Room",
-                }}
-                newSelectedRoom={selectedRoom.roomID}
-                changeSelectedRoom={(room) => {
-                  ////console.log("gvvvv");
-                  //console.log("room details: ", room);
-                  setSelectedRoom({
-                    hname: "BH-7E",
-                    roomID: room.id,
-                    roomNo: room.no,
-                  });
-                }}
-              />
+            <MGHview1
+              floor="Ground Floor"
+              roomsDetails={mgh2020State.gf}
+              extraThings={{
+                is_left: "Stairs",
+                is_mid: "Frontside ",
+                is_right: "Stairs",
+                os_left: "Wash Room",
+                os_mid: "Stairs / Lifts ",
+                os_right: "Wash Room",
+              }}
+              newSelectedRoom={selectedRoom.roomID}
+              changeSelectedRoom={(room) => {
+                ////console.log("gvvvv");
+                //console.log("room details: ", room);
+                setSelectedRoom({
+                  hname: "BH-7E",
+                  roomID: room.id,
+                  roomNo: room.no,
+                });
+              }}
+            />
 
-              <MGHview1
-                floor="First Floor"
-                roomsDetails={mgh2020State.ff}
-                extraThings={{
-                  is_left: "Stairs",
-                  is_mid: "Reading Room ",
-                  is_right: "Stairs",
-                  os_left: "Wash Room",
-                  os_mid: "Stairs / Lifts ",
-                  os_right: "Wash Room",
-                }}
-                newSelectedRoom={selectedRoom.roomID}
-                changeSelectedRoom={(room) => {
-                  ////console.log("gvvvv");
-                  //console.log("room details: ", room);
-                  setSelectedRoom({
-                    hname: "BH-7E",
-                    roomID: room.id,
-                    roomNo: room.no,
-                  });
-                }}
-              />
-              <MGHview1
-                floor="Second Floor"
-                roomsDetails={mgh2020State.sf}
-                extraThings={{
-                  is_left: "Stairs",
-                  is_mid: "Gym Machine ",
-                  is_right: "Stairs",
-                  os_left: "Wash Room",
-                  os_mid: "Stairs / Lifts ",
-                  os_right: "Wash Room",
-                }}
-                newSelectedRoom={selectedRoom.roomID}
-                changeSelectedRoom={(room) => {
-                  ////console.log("gvvvv");
-                  //console.log("room details: ", room);
-                  setSelectedRoom({
-                    hname: "BH-7E",
-                    roomID: room.id,
-                    roomNo: room.no,
-                  });
-                }}
-              />
-              <MGHview1
-                floor="Third Floor"
-                roomsDetails={mgh2020State.tf}
-                extraThings={{
-                  is_left: "Stairs",
-                  is_mid: "Reading Room",
-                  is_right: "Stairs",
-                  os_left: "Wash Room",
-                  os_mid: "Stairs / Lifts ",
-                  os_right: "Wash Room",
-                }}
-                newSelectedRoom={selectedRoom.roomID}
-                changeSelectedRoom={(room) => {
-                  ////console.log("gvvvv");
-                  //console.log("room details: ", room);
-                  setSelectedRoom({
-                    hname: "BH-7E",
-                    roomID: room.id,
-                    roomNo: room.no,
-                  });
-                }}
-              />
-              <MGHview1
-                floor="Fourth Floor"
-                roomsDetails={mgh2020State.fof}
-                extraThings={{
-                  is_left: "Stairs",
-                  is_mid: "Reading Room ",
-                  is_right: "Stairs",
-                  os_left: "Wash Room",
-                  os_mid: "Stairs / Lifts ",
-                  os_right: "Wash Room",
-                }}
-                newSelectedRoom={selectedRoom.roomID}
-                changeSelectedRoom={(room) => {
-                  ////console.log("gvvvv");
-                  //console.log("room details: ", room);
-                  setSelectedRoom({
-                    hname: "BH-7E",
-                    roomID: room.id,
-                    roomNo: room.no,
-                  });
-                }}
-              />
-              <MGHview1
-                floor="Fifth Floor"
-                roomsDetails={mgh2020State.fif}
-                extraThings={{
-                  is_left: "Stairs",
-                  is_mid: "Reading Room ",
-                  is_right: "Stairs",
-                  os_left: "Wash Room",
-                  os_mid: "Stairs / Lifts ",
-                  os_right: "Wash Room",
-                }}
-                newSelectedRoom={selectedRoom.roomID}
-                changeSelectedRoom={(room) => {
-                  ////console.log("gvvvv");
-                  //console.log("room details: ", room);
-                  setSelectedRoom({
-                    hname: "BH-7E",
-                    roomID: room.id,
-                    roomNo: room.no,
-                  });
-                }}
-              />
-              <MGHview1
-                floor="Sixth Floor"
-                roomsDetails={mgh2020State.sif}
-                extraThings={{
-                  is_left: "Stairs",
-                  is_mid: "Store Room ",
-                  is_right: "Stairs",
-                  os_left: "Wash Room",
-                  os_mid: "Stairs / Lifts ",
-                  os_right: "Wash Room",
-                }}
-                newSelectedRoom={selectedRoom.roomID}
-                changeSelectedRoom={(room) => {
-                  ////console.log("gvvvv");
-                  //console.log("room details: ", room);
-                  setSelectedRoom({
-                    hname: "BH-7E",
-                    roomID: room.id,
-                    roomNo: room.no,
-                  });
-                }}
-              />
+            <MGHview1
+              floor="First Floor"
+              roomsDetails={mgh2020State.ff}
+              extraThings={{
+                is_left: "Stairs",
+                is_mid: "Reading Room ",
+                is_right: "Stairs",
+                os_left: "Wash Room",
+                os_mid: "Stairs / Lifts ",
+                os_right: "Wash Room",
+              }}
+              newSelectedRoom={selectedRoom.roomID}
+              changeSelectedRoom={(room) => {
+                ////console.log("gvvvv");
+                //console.log("room details: ", room);
+                setSelectedRoom({
+                  hname: "BH-7E",
+                  roomID: room.id,
+                  roomNo: room.no,
+                });
+              }}
+            />
+            <MGHview1
+              floor="Second Floor"
+              roomsDetails={mgh2020State.sf}
+              extraThings={{
+                is_left: "Stairs",
+                is_mid: "Gym Machine ",
+                is_right: "Stairs",
+                os_left: "Wash Room",
+                os_mid: "Stairs / Lifts ",
+                os_right: "Wash Room",
+              }}
+              newSelectedRoom={selectedRoom.roomID}
+              changeSelectedRoom={(room) => {
+                ////console.log("gvvvv");
+                //console.log("room details: ", room);
+                setSelectedRoom({
+                  hname: "BH-7E",
+                  roomID: room.id,
+                  roomNo: room.no,
+                });
+              }}
+            />
+            <MGHview1
+              floor="Third Floor"
+              roomsDetails={mgh2020State.tf}
+              extraThings={{
+                is_left: "Stairs",
+                is_mid: "Reading Room",
+                is_right: "Stairs",
+                os_left: "Wash Room",
+                os_mid: "Stairs / Lifts ",
+                os_right: "Wash Room",
+              }}
+              newSelectedRoom={selectedRoom.roomID}
+              changeSelectedRoom={(room) => {
+                ////console.log("gvvvv");
+                //console.log("room details: ", room);
+                setSelectedRoom({
+                  hname: "BH-7E",
+                  roomID: room.id,
+                  roomNo: room.no,
+                });
+              }}
+            />
+            <MGHview1
+              floor="Fourth Floor"
+              roomsDetails={mgh2020State.fof}
+              extraThings={{
+                is_left: "Stairs",
+                is_mid: "Reading Room ",
+                is_right: "Stairs",
+                os_left: "Wash Room",
+                os_mid: "Stairs / Lifts ",
+                os_right: "Wash Room",
+              }}
+              newSelectedRoom={selectedRoom.roomID}
+              changeSelectedRoom={(room) => {
+                ////console.log("gvvvv");
+                //console.log("room details: ", room);
+                setSelectedRoom({
+                  hname: "BH-7E",
+                  roomID: room.id,
+                  roomNo: room.no,
+                });
+              }}
+            />
+            <MGHview1
+              floor="Fifth Floor"
+              roomsDetails={mgh2020State.fif}
+              extraThings={{
+                is_left: "Stairs",
+                is_mid: "Reading Room ",
+                is_right: "Stairs",
+                os_left: "Wash Room",
+                os_mid: "Stairs / Lifts ",
+                os_right: "Wash Room",
+              }}
+              newSelectedRoom={selectedRoom.roomID}
+              changeSelectedRoom={(room) => {
+                ////console.log("gvvvv");
+                //console.log("room details: ", room);
+                setSelectedRoom({
+                  hname: "BH-7E",
+                  roomID: room.id,
+                  roomNo: room.no,
+                });
+              }}
+            />
+            <MGHview1
+              floor="Sixth Floor"
+              roomsDetails={mgh2020State.sif}
+              extraThings={{
+                is_left: "Stairs",
+                is_mid: "Store Room ",
+                is_right: "Stairs",
+                os_left: "Wash Room",
+                os_mid: "Stairs / Lifts ",
+                os_right: "Wash Room",
+              }}
+              newSelectedRoom={selectedRoom.roomID}
+              changeSelectedRoom={(room) => {
+                ////console.log("gvvvv");
+                //console.log("room details: ", room);
+                setSelectedRoom({
+                  hname: "BH-7E",
+                  roomID: room.id,
+                  roomNo: room.no,
+                });
+              }}
+            />
 
-              <ProceedButton
-                newSelectedRoom={selectedRoom.roomID}
-                handleClick={handleClick}
-              />
-            </Tab>
-          )}
+            <ProceedButton
+              newSelectedRoom={selectedRoom.roomID}
+              handleClick={handleClick}
+            />
+          </Tab>
+        )}
 
-        {
-          show(['mtech1', 'mba1', 'msc1'], 'female', "MGH-P-2 A Block") &&
+        {show(["mtech1", "mba1", "msc1"], "female", "MGH-P-2 A Block") && (
           <Tab eventKey="MGH-P-2 A Block" title="MGH-P-2 A Block" className=" ">
             <AvailabilityTab
               newSelectedRoom={selectedRoom.roomNo}
@@ -1667,12 +1626,15 @@ function JustifiedExample() {
                 });
               }}
             />
-            <ProceedButton newSelectedRoom={selectedRoom.roomID} handleClick={handleClick} />
-          </Tab>}
+            <ProceedButton
+              newSelectedRoom={selectedRoom.roomID}
+              handleClick={handleClick}
+            />
+          </Tab>
+        )}
 
-        {
-          show(['mtech1', 'mba1', 'msc1'], 'female', "MGH-P-2 B Block") &&
-          (<Tab eventKey="MGH-P-2 B Block" title="MGH-P-2 B Block" className=" ">
+        {show(["mtech1", "mba1", "msc1"], "female", "MGH-P-2 B Block") && (
+          <Tab eventKey="MGH-P-2 B Block" title="MGH-P-2 B Block" className=" ">
             <AvailabilityTab
               newSelectedRoom={selectedRoom.roomNo}
               hname={selectedHostel}
@@ -1924,7 +1886,7 @@ function JustifiedExample() {
               handleClick={handleClick}
             />
           </Tab>
-          )}
+        )}
       </Tabs>
     </>
   );

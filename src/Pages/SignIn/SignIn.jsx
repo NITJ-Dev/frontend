@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeftIcon } from "@heroicons/react/solid";
 import Header from "../../components/Header/Header";
 import ReCAPTCHA from "react-google-recaptcha";
-import {Alert } from "@mui/material";
+import { Alert } from "@mui/material";
 import { Captcha } from "../../components/CAPTACH/Captcha";
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -16,10 +16,8 @@ const SignIn = () => {
   const [showCaptcha, setShowCaptcha] = useState(true);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
- 
+
   const { updateSession } = useSession();
-
-
 
   const validateForm = () => {
     const newErrors = {};
@@ -44,7 +42,6 @@ const SignIn = () => {
     return newErrors;
   };
 
-
   const sendToCaptchaForValidation = (e) => {
     setVerified(e);
   };
@@ -59,7 +56,7 @@ const SignIn = () => {
     };
 
     try {
-      let res = axiosInstance.post(`/sign_in.php`, data);
+      let res = axiosInstance.post(`/student/sign_in.php`, data);
 
       await toast.promise(res, {
         loading: "Logging you In...",
@@ -89,7 +86,7 @@ const SignIn = () => {
             // Return the course and semester as an object
             return {
               course: matches[1], // course is the first part
-              semester: matches[2] // semester is the second part
+              semester: matches[2], // semester is the second part
             };
           } else {
             // Return null if the string doesn't match the expected format
@@ -103,7 +100,6 @@ const SignIn = () => {
         // session.isSingle = Boolean(reisSingleisSingles?.data?.);
         // session.isSingle = res?.data?.course_sem === "btech7";
 
-        
         session.isSingle = false;
         const course_sem = splitCourseSem(res?.data?.course_sem);
         session.course = course_sem?.course;
@@ -154,14 +150,18 @@ const SignIn = () => {
       <section className="my-28 flex items-center justify-center bg-white px-4 py-8 md:py-0">
         <div className="w-full max-w-md md:max-w-lg lg:max-w-xl bg-white border-1 border-blue-600 rounded-lg shadow-md overflow-hidden relative">
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
             className="absolute top-4 left-4 text-blue-600 hover:text-blue-800 focus:outline-none"
           >
             <ArrowLeftIcon className="h-6 w-6" />
           </button>
           <div className="p-6 md:p-8 space-y-6">
             <div className="flex items-center justify-center mb-6">
-              <img className="w-24 h-24 md:w-32 md:h-32" src={logo} alt="Logo" />
+              <img
+                className="w-24 h-24 md:w-32 md:h-32"
+                src={logo}
+                alt="Logo"
+              />
             </div>
             <h1 className="text-xl md:text-2xl font-bold leading-tight tracking-tight text-blue-900 text-center">
               Login
@@ -180,10 +180,10 @@ const SignIn = () => {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className={`bg-white border ${errors.email ? "border-red-500" : "border-blue-300"
-                    } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
+                  className={`bg-white border ${
+                    errors.email ? "border-red-500" : "border-blue-300"
+                  } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
                   placeholder=""
-
                 />
                 {errors.email && (
                   <p className="mt-2 text-sm text-red-600">{errors.email}</p>
@@ -202,10 +202,10 @@ const SignIn = () => {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className={`bg-white border ${errors.password ? "border-red-500" : "border-blue-300"
-                    } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
+                  className={`bg-white border ${
+                    errors.password ? "border-red-500" : "border-blue-300"
+                  } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
                   placeholder="••••••••"
-
                 />
                 {errors.password && (
                   <p className="mt-2 text-sm text-red-600">{errors.password}</p>
@@ -228,18 +228,22 @@ const SignIn = () => {
                   Captcha Validated Successful
                 </Alert>
               )}
-              {showCaptcha && <Captcha setVerification={sendToCaptchaForValidation} setShowCaptcha={setShowCaptcha} />}
-
+              {showCaptcha && (
+                <Captcha
+                  setVerification={sendToCaptchaForValidation}
+                  setShowCaptcha={setShowCaptcha}
+                />
+              )}
 
               <button
                 type="submit"
-                className={`w-full text-white ${verified ? "bg-blue-700" : "bg-blue-400"
-                  } focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
+                className={`w-full text-white ${
+                  verified ? "bg-blue-700" : "bg-blue-400"
+                } focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
                 disabled={!verified}
               >
                 Login to your account
               </button>
-
 
               <p className="text-sm font-light text-blue-500 text-center">
                 Forgot Password?{" "}

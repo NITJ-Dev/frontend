@@ -27,7 +27,7 @@ const Popup = ({ setPopup, rollno }) => {
         subject: userInput.subject,
         message: userInput.message,
       };
-      let res = axiosInstance.post(`/raise_issue_on_student_details.php`, data);
+      let res = axiosInstance.post(`/admin/student_data_issue.php`, data);
       await toast.promise(res, {
         loading: "Done.",
         success: (data) => {
@@ -47,10 +47,10 @@ const Popup = ({ setPopup, rollno }) => {
         });
 
         setPopup(false);
-      }      
+      }
     } catch (error) {
-      console.log('eero', error);
-      toast.error("Operation failed...",error);
+      console.log("eero", error);
+      toast.error("Operation failed...", error);
     }
   };
 
@@ -65,7 +65,9 @@ const Popup = ({ setPopup, rollno }) => {
           <h3 className="text-xl font-semibold text-gray-800">
             Raise an Issue
           </h3>
-          <span style={{fontSize:'13.5px',color:'red'}}>E-mail will not be sent, this is just for add remark.</span>
+          <span style={{ fontSize: "13.5px", color: "red" }}>
+            E-mail will not be sent, this is just for add remark.
+          </span>
           <div>
             <label
               htmlFor="subject"
@@ -73,7 +75,9 @@ const Popup = ({ setPopup, rollno }) => {
             >
               Subject
             </label>
-            <span style={{ fontSize: '12px', color: 'brown' }}>Type of Issue (Personal details/Documents)</span>
+            <span style={{ fontSize: "12px", color: "brown" }}>
+              Type of Issue (Personal details/Documents)
+            </span>
 
             <input
               type="text"

@@ -43,7 +43,6 @@ const DocumentUpload = () => {
     setVerified(e);
   };
 
-
   const handleFileChange = (event) => {
     const { name, files } = event.target;
     if (files.length > 0 && files[0].size > 500000) {
@@ -72,18 +71,21 @@ const DocumentUpload = () => {
     }
 
     try {
-      let res = axiosInstance.post(`/upload_doc_insert.php`, formData);
+      let res = axiosInstance.post(
+        `/book_room/student_documents.php`,
+        formData
+      );
 
       await toast.promise(res, {
         loading: "Submitting.",
         success: (data) => {
-          console.log('Success response data:', data);
+          console.log("Success response data:", data);
           return data?.data?.message;
         },
         error: (data) => {
           setVerified(false);
           setShowCaptcha(true);
-          console.log('Error response data:', data);
+          console.log("Error response data:", data);
           return data?.response?.data.message;
         },
       });
@@ -106,14 +108,14 @@ const DocumentUpload = () => {
     <>
       <Steps />
       <div className="hidden md:block">
-        {
-          (session.isSingle === false) ?
-            <StepProcessBar /> :
-            <>
-              {/* <ProcessBar /> */}
-              <FirstYear />
-            </>
-        }
+        {session.isSingle === false ? (
+          <StepProcessBar />
+        ) : (
+          <>
+            {/* <ProcessBar /> */}
+            <FirstYear />
+          </>
+        )}
       </div>
       <div className="flex justify-center align-center mb-2">
         <section className="bg-white w-full lg:w-2/3 h-full">
@@ -147,7 +149,6 @@ const DocumentUpload = () => {
                             accept=".pdf"
                             className="bg-white border mb-2 border-red-500 text-blue-900 sm:text-m rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
                             onChange={handleFileChange}
-
                           />
                           {fileURLs.hostelReceipt && (
                             <a
@@ -182,7 +183,6 @@ const DocumentUpload = () => {
                             accept=".pdf"
                             className="bg-white border mb-2 border-red-500 text-blue-900 sm:text-m rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
                             onChange={handleFileChange}
-                            
                           />
                           {fileURLs.messAdvance && (
                             <a
@@ -275,19 +275,26 @@ const DocumentUpload = () => {
                           Captcha Validated Successful
                         </Alert>
                       )}
-                      {showCaptcha && <Captcha setVerification={sendToCaptchaForValidation} setShowCaptcha={setShowCaptcha} />}
+                      {showCaptcha && (
+                        <Captcha
+                          setVerification={sendToCaptchaForValidation}
+                          setShowCaptcha={setShowCaptcha}
+                        />
+                      )}
                     </div>
 
                     <div className="flex items-center justify-center mt-6">
                       <button
                         type="submit"
-                        className={` ${verified ? "bg-blue-700 text-white" : "bg-blue-400 text-black"
-                          } items-center justify-center w-full md:w-1/3 py-3 px-4 border rounded-md focus:ring-2 focus:ring-offset-1 border-red-500 hover:border-blue-400 focus:ring-blue-400`}
-                          disabled={!verified}>
+                        className={` ${
+                          verified
+                            ? "bg-blue-700 text-white"
+                            : "bg-blue-400 text-black"
+                        } items-center justify-center w-full md:w-1/3 py-3 px-4 border rounded-md focus:ring-2 focus:ring-offset-1 border-red-500 hover:border-blue-400 focus:ring-blue-400`}
+                        disabled={!verified}
+                      >
                         Save & Proceed
                       </button>
-
-
                     </div>
                   </form>
                 </div>
