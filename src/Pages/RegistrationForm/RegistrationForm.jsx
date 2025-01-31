@@ -13,7 +13,6 @@ const RegistrationForm = () => {
   const [verified, setVerified] = useState(false);
   const [showCaptcha, setShowCaptcha] = useState(true);
 
-
   const { session, updateSession } = useSession();
 
   const navigate = useNavigate();
@@ -27,10 +26,10 @@ const RegistrationForm = () => {
     gender: "",
     blood_group: "",
 
-    email: '',
-    year: '1',
-    course: '',
-    sem: '1',
+    email: "",
+    year: "1",
+    course: "",
+    sem: "1",
     self_mobile: "",
     father_mobile: "",
     mother_mobile: "",
@@ -67,7 +66,6 @@ const RegistrationForm = () => {
       setShowCaptcha(true);
     }
     if (!formData.mother_name) {
-
       newErrors.mother = "Mother's Name is required";
       setVerified(false);
       setShowCaptcha(true);
@@ -88,7 +86,6 @@ const RegistrationForm = () => {
       newErrors.sem = "Sem is required";
     }
     if (!formData.physically_handicapped) {
-
       setVerified(false);
       setShowCaptcha(true);
 
@@ -177,7 +174,7 @@ const RegistrationForm = () => {
     //console.log('form data',formData);
     delete formData.application_id;
     try {
-      let res = axiosInstance.post(`/application_form_insert.php`, formData);
+      let res = axiosInstance.post(`/book_room/application_form.php`, formData);
       await toast.promise(res, {
         loading: "Submitting Form.",
         success: (data) => {
@@ -195,7 +192,7 @@ const RegistrationForm = () => {
       //console.log(res?.data?.status === "success");
       if (res?.data?.status === "success") {
         // setSession(res.data.user);
-        updateSession({ stepIndex: 3});
+        updateSession({ stepIndex: 3 });
         navigate("/DocumentUpload");
       }
     } catch (error) {
@@ -229,7 +226,6 @@ const RegistrationForm = () => {
             </>
         } */}
         <FirstYear />
-
       </div>
       <div className="flex justify-center align-center  md:h-min-screen md:py-8 md:px-4 md:lt-sm:mt-0">
         <section className="bg-white w-full h-full my-2">
@@ -259,8 +255,9 @@ const RegistrationForm = () => {
                           id="name"
                           value={formData.full_name}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.name ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.name ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="FULL NAME"
                         />
                         {errors.name && (
@@ -280,8 +277,11 @@ const RegistrationForm = () => {
                           id="application_id"
                           value={formData.application_id}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.application_id ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.application_id
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="Application number"
                           disabled
                         />
@@ -304,8 +304,9 @@ const RegistrationForm = () => {
                           name="father_name"
                           value={formData.father_name}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.father ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.father ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="FATHER'S NAME"
                         />
                         {errors.father && (
@@ -325,8 +326,9 @@ const RegistrationForm = () => {
                           name="mother_name"
                           value={formData.mother_name}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.mother ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.mother ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="MOTHER'S NAME"
                         />
                         {errors.mother && (
@@ -347,8 +349,9 @@ const RegistrationForm = () => {
                           id="branch"
                           value={formData.branch}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.branch ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.branch ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                         >
                           <option value="">SELECT</option>
                           <option value="Biotechnology">Biotechnology</option>
@@ -413,10 +416,11 @@ const RegistrationForm = () => {
                           id="physically_handicapped"
                           value={formData.physically_handicapped}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.physically_handicapped
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.physically_handicapped
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                         >
                           <option value="">SELECT</option>
                           <option value="NO">NO</option>
@@ -440,10 +444,11 @@ const RegistrationForm = () => {
                           id="blood_group"
                           value={formData.blood_group}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.blood_group
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.blood_group
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                         >
                           <option value="">SELECT</option>
                           <option value="A+">A+</option>
@@ -471,8 +476,9 @@ const RegistrationForm = () => {
                           id="gender"
                           value={formData.gender}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.gender ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.gender ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                         >
                           <option value="">SELECT</option>
                           <option value="male">Male</option>
@@ -497,9 +503,10 @@ const RegistrationForm = () => {
                           id="course"
                           value={formData.course}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.course ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-gray-800 text-black focus:ring-blue-300 focus:border-blue-300`}
-                        // disabled
+                          className={`bg-blue-50 border ${
+                            errors.course ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-gray-800 text-black focus:ring-blue-300 focus:border-blue-300`}
+                          // disabled
                         >
                           <option value="">SELECT</option>
                           {/* <option value="1st">1st</option> */}
@@ -528,8 +535,9 @@ const RegistrationForm = () => {
                           id="year"
                           value={formData.year}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.year ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-gray-800 text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.year ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-gray-800 text-black focus:ring-blue-300 focus:border-blue-300`}
                           disabled
                         >
                           <option value="">SELECT</option>
@@ -557,8 +565,9 @@ const RegistrationForm = () => {
                           id="sem"
                           value={formData.sem}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.sem ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-gray-800 text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.sem ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-gray-800 text-black focus:ring-blue-300 focus:border-blue-300`}
                           disabled
                         >
                           <option value="">SELECT</option>
@@ -588,7 +597,7 @@ const RegistrationForm = () => {
                     <div className="flex flex-wrap -mx-2">
                       <div className="w-full sm:w-1/2 px-2 min-w-[210px]">
                         <label className="block mb-2 mt-4 text-sm font-medium text-black">
-                        EMAIL ID
+                          EMAIL ID
                           <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -597,8 +606,9 @@ const RegistrationForm = () => {
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.email ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.email ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="example"
                           // disabled
                         />
@@ -619,10 +629,11 @@ const RegistrationForm = () => {
                           name="self_mobile"
                           value={formData.self_mobile}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.self_mobile
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.self_mobile
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="SELF MOBILE NUMBER"
                           pattern="[0-9]{10}"
                         />
@@ -645,10 +656,11 @@ const RegistrationForm = () => {
                           name="father_mobile"
                           value={formData.father_mobile}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.father_mobile
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.father_mobile
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="FATHER'S MOBILE NO"
                           pattern="[0-9]{10}"
                         />
@@ -669,10 +681,11 @@ const RegistrationForm = () => {
                           name="mother_mobile"
                           value={formData.mother_mobile}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.mother_mobile
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.mother_mobile
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="MOTHER'S MOBILE NO"
                           pattern="[0-9]{10}"
                         />
@@ -695,10 +708,11 @@ const RegistrationForm = () => {
                           name="sibling_mobile"
                           value={formData.sibling_mobile}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.sibling_mobile
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.sibling_mobile
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="SIBLING'S MOBILE NO"
                           pattern="[0-9]{10}"
                         />
@@ -727,10 +741,11 @@ const RegistrationForm = () => {
                           name="postal_address"
                           value={formData.postal_address}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.address
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.address
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="ADDRESS"
                         />
                         {errors.address && (
@@ -749,8 +764,9 @@ const RegistrationForm = () => {
                           id="state"
                           value={formData.state}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.state ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.state ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="SELECT"
                         >
                           <option value="">SELECT</option>
@@ -820,10 +836,11 @@ const RegistrationForm = () => {
                           name="local_guardian_address"
                           value={formData.local_guardian_address}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.local_guardian_address
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.local_guardian_address
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="ADDRESS WITH PINCODE"
                         />
                         {errors.local_guardian_address && (
@@ -844,10 +861,11 @@ const RegistrationForm = () => {
                         name="guardian_mobile"
                         value={formData.guardian_mobile}
                         onChange={handleChange}
-                        className={`bg-blue-50 border ${errors.guardian_mobile
-                          ? "border-red-300"
-                          : "border-blue-300"
-                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-gray-800 text-black focus:ring-blue-300 focus:border-blue-300`}
+                        className={`bg-blue-50 border ${
+                          errors.guardian_mobile
+                            ? "border-red-300"
+                            : "border-blue-300"
+                        } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-gray-800 text-black focus:ring-blue-300 focus:border-blue-300`}
                         placeholder="LOCAL GUARDIAN'S MOBILE NO"
                         pattern="[0-9]{10}"
                       />
@@ -864,22 +882,26 @@ const RegistrationForm = () => {
                         Captcha Validated Successful
                       </Alert>
                     )}
-                    {showCaptcha && <Captcha setVerification={sendToCaptchaForValidation} setShowCaptcha={setShowCaptcha} />}
+                    {showCaptcha && (
+                      <Captcha
+                        setVerification={sendToCaptchaForValidation}
+                        setShowCaptcha={setShowCaptcha}
+                      />
+                    )}
                   </div>
                   <div className="flex items-center justify-center">
                     <button
                       type="submit"
                       name="submit"
                       value="Save & Proceed"
-                      className={`bg-blue-400 ${verified ? "bg-blue-700 text-white" : "bg-blue-400"
-                        }  flex items-center justify-center w-[6%] py-3 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 min-w-[100px]  border-blue-300 focus:ring-purple-400 hover:border-purple-400`}
+                      className={`bg-blue-400 ${
+                        verified ? "bg-blue-700 text-white" : "bg-blue-400"
+                      }  flex items-center justify-center w-[6%] py-3 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 min-w-[100px]  border-blue-300 focus:ring-purple-400 hover:border-purple-400`}
                       disabled={!verified}
                     >
                       Save
                     </button>
                   </div>
-
-
                 </form>
               </div>
             </div>

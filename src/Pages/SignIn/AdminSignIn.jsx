@@ -37,16 +37,16 @@ const AdminSignIn = () => {
     };
 
     try {
-      let res = axiosInstance.post(`/admin_sign_in.php`, data);
+      let res = axiosInstance.post(`/admin/sign_in.php`, data);
 
       await toast.promise(res, {
         loading: "Logging you In...",
         success: (data) => {
-         //console.log(data?.data);
+          //console.log(data?.data);
           return data?.data?.message;
         },
         error: (data) => {
-         //console.log(data?.response?.data);
+          //console.log(data?.response?.data);
           return data?.response?.data.message;
         },
       });
@@ -61,8 +61,6 @@ const AdminSignIn = () => {
 
         updateSession(session);
         navigate("/HostelSummary");
-
-
       }
     } catch (error) {
       console.error("Error Logging In the user.", error);
@@ -81,12 +79,11 @@ const AdminSignIn = () => {
   };
 
   const handleBack = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
     <>
-    
       <section className="my-28 flex items-center justify-center bg-white px-4 lg:py-8 md:py-0">
         <div className="w-full max-w-md md:max-w-lg lg:max-w-xl bg-white border-1 border-blue-600 rounded-lg shadow-md overflow-hidden relative">
           <button
@@ -97,7 +94,11 @@ const AdminSignIn = () => {
           </button>
           <div className="p-6 md:p-8 space-y-6">
             <div className="flex items-center justify-center mb-6">
-              <img className="w-24 h-24 md:w-32 md:h-32" src={logo} alt="Logo" />
+              <img
+                className="w-24 h-24 md:w-32 md:h-32"
+                src={logo}
+                alt="Logo"
+              />
             </div>
             <h1 className="text-xl md:text-2xl font-bold leading-tight tracking-tight text-blue-900 text-center">
               Admin Login
@@ -116,8 +117,9 @@ const AdminSignIn = () => {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className={`bg-white border ${errors.email ? "border-red-500" : "border-blue-300"
-                    } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
+                  className={`bg-white border ${
+                    errors.email ? "border-red-500" : "border-blue-300"
+                  } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
                   placeholder="name@nitj.ac.in"
                   required
                 />
@@ -138,8 +140,9 @@ const AdminSignIn = () => {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className={`bg-white border ${errors.password ? "border-red-500" : "border-blue-300"
-                    } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
+                  className={`bg-white border ${
+                    errors.password ? "border-red-500" : "border-blue-300"
+                  } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
                   placeholder="••••••••"
                   required
                 />

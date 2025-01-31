@@ -12,7 +12,7 @@ const Sdtdet = () => {
 
   const [studentData, setStudentData] = useState({});
   const [documents, setDocuments] = useState({});
-
+  Raise;
   const { rollno } = useParams();
 
   const handleRaiseIssue = () => {
@@ -26,7 +26,7 @@ const Sdtdet = () => {
   //self_verification_edit.php
   const getData = async () => {
     try {
-      let res = axiosInstance.post(`/self_verification.php`, { rollno });
+      let res = axiosInstance.post(`/book_room/verify_student.php`, { rollno });
       await toast.promise(res, {
         loading: "Loading...",
         success: (data) => {
@@ -64,7 +64,9 @@ const Sdtdet = () => {
 
   const setVerify = async () => {
     try {
-      let res = axiosInstance.post(`/verify_students_details.php`, { rollno });
+      let res = axiosInstance.post(`/admin/verify_student_details.php`, {
+        rollno,
+      });
       await toast.promise(res, {
         loading: "Verifying...",
         success: (data) => {
@@ -108,8 +110,6 @@ const Sdtdet = () => {
                 <BackButton />
                 Student Information
               </div>
-
-              
             </div>
             <hr className="my-2 border-t border-blue-900" />
             <div className="grid grid-cols-2 gap-1">
