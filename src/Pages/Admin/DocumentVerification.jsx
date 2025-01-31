@@ -20,7 +20,7 @@ const DocumentVerification = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let res = axiosInstance.post("/admin_data_fetch.php");
+        let res = axiosInstance.get("/admin/student_data.php");
         await toast.promise(res, {
           loading: "Fetching data.",
           success: (data) => {
@@ -30,10 +30,10 @@ const DocumentVerification = () => {
             return data?.response?.data.message;
           },
         });
-        
+
         res = await res;
         console.log("res ka data", res?.data?.form_data);
-        
+
         if (res?.data?.status === "success") {
           setStudents(res?.data?.form_data);
         }
@@ -74,14 +74,14 @@ const DocumentVerification = () => {
                     </Link>
                   </td>
                   <td
-                  className={`px-4 py-2 border ${
-                    student.clerk_verified === "1"
-                      ? "text-green-500"
-                      : "text-yellow-500"
-                  }`}
-                >
-                  {student.clerk_verified === "1" ? "Verified" : "Pending"}
-                </td>
+                    className={`px-4 py-2 border ${
+                      student.clerk_verified === "1"
+                        ? "text-green-500"
+                        : "text-yellow-500"
+                    }`}
+                  >
+                    {student.clerk_verified === "1" ? "Verified" : "Pending"}
+                  </td>
                   <td className="px-4 py-2 border">{student.clerk_remarks}</td>
                 </tr>
               ))}

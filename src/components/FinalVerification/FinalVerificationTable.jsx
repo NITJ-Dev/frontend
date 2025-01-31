@@ -19,11 +19,11 @@ export default function SelfVerificationTable() {
     }
   };
 
-  const flattenObject = (obj, parentKey = '', result = {}) => {
+  const flattenObject = (obj, parentKey = "", result = {}) => {
     for (let key in obj) {
       if (obj.hasOwnProperty(key)) {
         let newKey = key;
-        if (typeof obj[key] === 'object' && obj[key] !== null) {
+        if (typeof obj[key] === "object" && obj[key] !== null) {
           flattenObject(obj[key], newKey, result);
         } else {
           result[newKey] = obj[key];
@@ -34,7 +34,7 @@ export default function SelfVerificationTable() {
   };
 
   const getConfirmationData = async () => {
-    const url = '/get_confirmation_details.php';
+    const url = "/book_room/confirmation_details.php";
     try {
       let res = axiosInstance.post(url, { code: session.code });
       await toast.promise(res, {
@@ -72,7 +72,10 @@ export default function SelfVerificationTable() {
               {Object.keys(studentData).map((key) => (
                 <div key={key} className="m-4 mt-4 text-left">
                   <span className="font-bold">
-                    {key.replace("_", " ").replace(/\b\w/g, (l) => l.toUpperCase())} :
+                    {key
+                      .replace("_", " ")
+                      .replace(/\b\w/g, (l) => l.toUpperCase())}{" "}
+                    :
                   </span>
                   {studentData[key]}
                 </div>
@@ -95,7 +98,11 @@ export default function SelfVerificationTable() {
               <button
                 onClick={handleSubmit}
                 disabled={!isChecked}
-                className={`mt-4 px-4 py-2 rounded ${isChecked ? "bg-blue-600 text-white" : "bg-gray-400 text-gray-700 cursor-not-allowed"}`}
+                className={`mt-4 px-4 py-2 rounded ${
+                  isChecked
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-400 text-gray-700 cursor-not-allowed"
+                }`}
               >
                 Download Hostel form
               </button>
@@ -116,12 +123,20 @@ export default function SelfVerificationTable() {
           <input type="hidden" name="rollno" value={session?.application_id} />
         </form>} */}
 
-      <form ref={formRef}
+      <form
+        ref={formRef}
         // action="https://v1.nitj.ac.in/hostelsNITJ/hostel_form.php"
         // action="http://localhost/hostel-php-first-year/hostel_form.php"
         action="https://v1.nitj.ac.in/hostel-php-first-year-main/hostel_form.php"
-        method="post" target="_blank" style={{ display: 'none' }}>
-        <input type="hidden" name="application_id" value={session?.application_id} />
+        method="post"
+        target="_blank"
+        style={{ display: "none" }}
+      >
+        <input
+          type="hidden"
+          name="application_id"
+          value={session?.application_id}
+        />
       </form>
     </>
   );

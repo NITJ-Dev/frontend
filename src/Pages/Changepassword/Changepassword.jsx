@@ -13,7 +13,6 @@ const Changepassword = () => {
 
   const navigate = useNavigate();
 
-
   const { setSession } = useSession();
 
   const validateForm = () => {
@@ -37,16 +36,16 @@ const Changepassword = () => {
     };
 
     try {
-      let res = axiosInstance.post(`/changepassword.php`, data);
+      let res = axiosInstance.post(`/student/change_password.php`, data);
 
       await toast.promise(res, {
         loading: "Creating...",
         success: (data) => {
-         //console.log(data?.data);
+          //console.log(data?.data);
           return data?.data?.message;
         },
         error: (data) => {
-         //console.log(data?.response?.data);
+          //console.log(data?.response?.data);
           return data?.response?.data.message;
         },
       });
@@ -91,9 +90,7 @@ const Changepassword = () => {
             <h1 className="text-xl md:text-2xl font-bold leading-tight tracking-tight text-blue-900 text-center">
               Change Password
             </h1>
-            <form className="space-y-4" onSubmit={handleSubmit} method='POST'  >
-
-
+            <form className="space-y-4" onSubmit={handleSubmit} method="POST">
               <div>
                 <label
                   htmlFor="password"
@@ -107,8 +104,9 @@ const Changepassword = () => {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className={`bg-white border ${errors.password ? "border-red-500" : "border-blue-300"
-                    } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
+                  className={`bg-white border ${
+                    errors.password ? "border-red-500" : "border-blue-300"
+                  } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
                   placeholder="••••••••"
                   required
                 />
@@ -129,8 +127,11 @@ const Changepassword = () => {
                   id="confirm-password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className={`bg-white border ${errors.confirmPassword ? "border-red-500" : "border-blue-300"
-                    } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
+                  className={`bg-white border ${
+                    errors.confirmPassword
+                      ? "border-red-500"
+                      : "border-blue-300"
+                  } text-blue-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5`}
                   placeholder="••••••••"
                   required
                 />
@@ -147,7 +148,6 @@ const Changepassword = () => {
               >
                 Update Password
               </button>
-
             </form>
           </div>
         </div>

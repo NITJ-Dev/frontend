@@ -12,22 +12,22 @@ const ForgotPassword = () => {
 
   const sendForm = async () => {
     try {
-      let res = axiosInstance.post(`/forgot.php`, { email });
+      let res = axiosInstance.post(`/student/forgot_password.php`, { email });
 
       await toast.promise(res, {
         loading: "Loading...",
         success: (data) => {
-         //console.log(data?.data);
+          //console.log(data?.data);
           return data?.data?.message;
         },
         error: (data) => {
-         //console.log(data?.response?.data);
+          //console.log(data?.response?.data);
           return data?.response?.data.message;
         },
       });
       res = await res;
 
-     //console.log(res?.data?.status === "success");
+      //console.log(res?.data?.status === "success");
     } catch (error) {
       console.error("Error forgot password.", error);
     }
@@ -37,16 +37,14 @@ const ForgotPassword = () => {
     event.preventDefault();
     sendForm();
 
-   //console.log("Email submitted:", email);
+    //console.log("Email submitted:", email);
     setMessage(
       "If an account with that email exists, a password reset link has been sent."
     );
   };
 
-
   return (
     <>
-     
       {/* <Steps /> */}
       <section className="min-h-screen flex items-center justify-center bg-white px-4 py-8 md:py-0">
         <div className="w-full max-w-md md:max-w-lg lg:max-w-xl bg-white border-1 border-blue-600 rounded-lg shadow-md overflow-hidden relative">

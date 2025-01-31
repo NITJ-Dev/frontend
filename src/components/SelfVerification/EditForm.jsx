@@ -54,8 +54,7 @@ export default function EditForm({
         "Sibling's Mobile No must be exactly 10 digits";
     }
     if (!formData.guardian_mobile) {
-      newErrors.guardian_mobile =
-        "Local Gaurdian's Mobile No is required";
+      newErrors.guardian_mobile = "Local Gaurdian's Mobile No is required";
     } else if (!mobileNumberPattern.test(formData.guardian_mobile)) {
       newErrors.guardian_mobile =
         "Local Gaurdian's Mobile No must be exactly 10 digits";
@@ -68,7 +67,6 @@ export default function EditForm({
     return newErrors;
   };
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const validationErrors = validateForm();
@@ -80,8 +78,6 @@ export default function EditForm({
     setStudentData(formData);
     setIsEditing(false);
   };
-
-
 
   // DOCS
   const [documentData, setDocumentData] = useState(new FormData());
@@ -104,7 +100,6 @@ export default function EditForm({
     }
   };
 
-
   const handleFileChange = (event) => {
     const { name, files } = event.target;
     if (files.length > 0 && files[0].size > 500000) {
@@ -120,25 +115,28 @@ export default function EditForm({
   };
 
   const sendForm = async () => {
-    documentData.set('rollno', formData.rollno);
+    documentData.set("rollno", formData.rollno);
 
     // Debugging logs: Log all form data
     //console.log('Form data:');
     // for (let [key, value] of formData.entries()) {
-      //console.log(`${key}:`, value);
+    //console.log(`${key}:`, value);
     // }
 
     try {
-      let res = axiosInstance.post(`/upload_doc_insert.php`, documentData);
+      let res = axiosInstance.post(
+        `/book_room/student_documents.php`,
+        documentData
+      );
 
       await toast.promise(res, {
         loading: "Updating documents",
         success: (data) => {
-          console.log('Success response data:', data);
+          console.log("Success response data:", data);
           return data?.data?.message;
         },
         error: (data) => {
-          console.log('Error response data:', data);
+          console.log("Error response data:", data);
           return data?.response?.data.message;
         },
       });
@@ -149,9 +147,7 @@ export default function EditForm({
     }
   };
 
-
   // DOCS
-
 
   return (
     <>
@@ -167,7 +163,6 @@ export default function EditForm({
           <div className="flex items-center justify-center px-1 py-1 ">
             <div className="w-full rounded-lg shadow border md:mt-0 xl:p-0 bg-white-100 border-blue-700">
               <div className="rounded-lg shadow-2xl bg-gray-100 p-6 space-y-4 md:space-y-6 sm:p-8 border-blue-600 border-2">
-
                 <form
                   className="space-y-4 md:space-y-6 border-blue-600"
                   onSubmit={handleSubmit}
@@ -188,8 +183,9 @@ export default function EditForm({
                           id="name"
                           value={formData.full_name}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.name ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.name ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="FULL NAME"
                         />
                         {errors.name && (
@@ -209,10 +205,9 @@ export default function EditForm({
                           id="application_id"
                           value={formData.application_id}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.rollno
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.rollno ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="ROLL"
                           disabled
                         />
@@ -235,8 +230,9 @@ export default function EditForm({
                           name="father_name"
                           value={formData.father_name}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.father ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.father ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="FATHER'S NAME"
                         />
                         {errors.father && (
@@ -256,8 +252,9 @@ export default function EditForm({
                           name="mother_name"
                           value={formData.mother_name}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.mother ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.mother ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="MOTHER'S NAME"
                         />
                         {errors.mother && (
@@ -278,8 +275,9 @@ export default function EditForm({
                           id="branch"
                           value={formData.branch}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.branch ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.branch ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                         >
                           <option value="">SELECT</option>
                           <option value="biotechnology">Biotechnology</option>
@@ -344,10 +342,11 @@ export default function EditForm({
                           id="physically_handicapped"
                           value={formData.physically_handicapped}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.physically_handicapped
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.physically_handicapped
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                         >
                           <option value="">SELECT</option>
                           <option value="NO">NO</option>
@@ -371,10 +370,11 @@ export default function EditForm({
                           id="blood_group"
                           value={formData.blood_group}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.blood_group
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.blood_group
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                         >
                           <option value="">SELECT</option>
                           <option value="A+">A+</option>
@@ -402,8 +402,9 @@ export default function EditForm({
                           id="gender"
                           value={formData.gender}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.gender ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.gender ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                         >
                           <option value="">SELECT</option>
                           <option value="male">Male</option>
@@ -418,9 +419,7 @@ export default function EditForm({
                       </div>
                     </div>
                     <div className="flex flex-wrap -mx-2">
-
                       <div className="w-full sm:w-1/2 px-2 min-w-[210px]">
-
                         <label className="block mb-2 mt-4 text-sm font-medium text-black">
                           Course
                         </label>
@@ -430,8 +429,9 @@ export default function EditForm({
                           id="course"
                           value={formData.course}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.course ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-gray-800 text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.course ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-gray-800 text-black focus:ring-blue-300 focus:border-blue-300`}
                         >
                           <option value="">SELECT</option>
                           {/* <option value="1st">1st</option> */}
@@ -450,7 +450,6 @@ export default function EditForm({
                       </div>
 
                       <div className="w-full sm:w-1/2 px-2 min-w-[210px]">
-
                         <label className="block mb-2 mt-4 text-sm font-medium text-black">
                           Year
                           <span className="text-red-500">*</span>
@@ -461,8 +460,9 @@ export default function EditForm({
                           id="year"
                           value={formData.year}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.year ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-gray-800 text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.year ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-gray-800 text-black focus:ring-blue-300 focus:border-blue-300`}
                         >
                           <option value="">SELECT</option>
                           {/* <option value="1st">1st</option> */}
@@ -479,7 +479,6 @@ export default function EditForm({
                         )}
                       </div>
 
-
                       <div className="w-full sm:w-1/2 px-2 min-w-[210px]">
                         <label className="block mb-2 mt-4 text-sm font-medium text-black">
                           Semester
@@ -490,8 +489,9 @@ export default function EditForm({
                           id="sem"
                           value={formData.sem}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.sem ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-gray-800 text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.sem ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-gray-800 text-black focus:ring-blue-300 focus:border-blue-300`}
                         >
                           <option value="">SELECT</option>
                           {/* <option value="1st">1st</option> */}
@@ -510,7 +510,6 @@ export default function EditForm({
                           </div>
                         )}
                       </div>
-
                     </div>
                   </div>
 
@@ -530,10 +529,9 @@ export default function EditForm({
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.email
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.email ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="ex@nitj.ac.in"
                           disabled
                         />
@@ -554,10 +552,11 @@ export default function EditForm({
                           name="self_mobile"
                           value={formData.self_mobile}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.self_mobile
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.self_mobile
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="SELF MOBILE NUMBER"
                           pattern="[0-9]{10}"
                         />
@@ -580,10 +579,11 @@ export default function EditForm({
                           name="father_mobile"
                           value={formData.father_mobile}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.father_mobile
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.father_mobile
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="FATHER'S MOBILE NO"
                           pattern="[0-9]{10}"
                         />
@@ -604,10 +604,11 @@ export default function EditForm({
                           name="mother_mobile"
                           value={formData.mother_mobile}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.mother_mobile
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.mother_mobile
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="MOTHER'S MOBILE NO"
                           pattern="[0-9]{10}"
                         />
@@ -630,10 +631,11 @@ export default function EditForm({
                           name="sibling_mobile"
                           value={formData.sibling_mobile}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.sibling_mobile
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.sibling_mobile
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="SIBLING'S MOBILE NO"
                           pattern="[0-9]{10}"
                         />
@@ -643,7 +645,6 @@ export default function EditForm({
                           </div>
                         )}
                       </div>
-
                     </div>
                   </div>
 
@@ -663,10 +664,11 @@ export default function EditForm({
                           name="postal_address"
                           value={formData.postal_address}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.address
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.address
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="ADDRESS"
                         />
                         {errors.address && (
@@ -685,8 +687,9 @@ export default function EditForm({
                           id="state"
                           value={formData.state}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.state ? "border-red-300" : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.state ? "border-red-300" : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="SELECT"
                         >
                           <option value="">SELECT</option>
@@ -756,10 +759,11 @@ export default function EditForm({
                           name="local_guardian_address"
                           value={formData.local_guardian_address}
                           onChange={handleChange}
-                          className={`bg-blue-50 border ${errors.local_guardian_address
-                            ? "border-red-300"
-                            : "border-blue-300"
-                            } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
+                          className={`bg-blue-50 border ${
+                            errors.local_guardian_address
+                              ? "border-red-300"
+                              : "border-blue-300"
+                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-black text-black focus:ring-blue-300 focus:border-blue-300`}
                           placeholder="ADDRESS WITH PINCODE"
                         />
                         {errors.local_guardian_address && (
@@ -780,10 +784,11 @@ export default function EditForm({
                         name="guardian_mobile"
                         value={formData.guardian_mobile}
                         onChange={handleChange}
-                        className={`bg-blue-50 border ${errors.guardian_mobile
-                          ? "border-red-300"
-                          : "border-blue-300"
-                          } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-gray-800 text-black focus:ring-blue-300 focus:border-blue-300`}
+                        className={`bg-blue-50 border ${
+                          errors.guardian_mobile
+                            ? "border-red-300"
+                            : "border-blue-300"
+                        } sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 bg-blue-200 border-blue-400 placeholder-gray-800 text-black focus:ring-blue-300 focus:border-blue-300`}
                         placeholder="LOCAL GUARDIAN'S MOBILE NO"
                         pattern="[0-9]{10}"
                       />
